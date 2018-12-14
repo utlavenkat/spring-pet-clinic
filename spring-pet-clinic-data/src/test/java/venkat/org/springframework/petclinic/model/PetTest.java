@@ -7,7 +7,6 @@ import org.junit.Test;
 
 import java.time.LocalDate;
 
-
 public class PetTest extends PersonTest {
     private Owner owner;
     private PetType petType;
