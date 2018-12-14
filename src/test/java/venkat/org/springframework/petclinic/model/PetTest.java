@@ -42,13 +42,15 @@ public class PetTest extends PersonTest {
     @Test
     public void testSettersAndGetters() {
         Pet pet = new Pet();
-        pet.setBirthDate(LocalDate.now());
+        LocalDate birthDate = LocalDate.now();
+        pet.setBirthDate(birthDate);
         pet.setOwner(owner);
         pet.setPetType(petType);
 
         Assert.assertNotNull("Object is null", pet);
         Assert.assertEquals("Owner Object not matched", owner, pet.getOwner());
         Assert.assertEquals("Pet Type not matched", petType, pet.getPetType());
+        Assert.assertEquals("Birth Date not matched", pet.getBirthDate(), birthDate);
 
     }
 
