@@ -2,7 +2,6 @@ package venkat.org.springframework.petclinic.bootstrap;
 
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import venkat.org.springframework.petclinic.model.Owner;
@@ -17,11 +16,11 @@ import java.time.LocalDate;
 @Component
 @AllArgsConstructor
 public class LoadData implements CommandLineRunner {
-    @Autowired
+
     private final OwnerService ownerService;
-    @Autowired
+
     private final VetService vetService;
-    @Autowired
+
     private final PetService petService;
 
 
