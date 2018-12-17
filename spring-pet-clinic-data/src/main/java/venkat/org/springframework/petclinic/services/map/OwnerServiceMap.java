@@ -1,10 +1,13 @@
 package venkat.org.springframework.petclinic.services.map;
 
+import org.springframework.stereotype.Service;
 import venkat.org.springframework.petclinic.model.Owner;
+import venkat.org.springframework.petclinic.services.OwnerService;
 
 import java.util.Set;
 
-public class OwnerServiceMap extends AbstractMapService<Owner, Long> {
+@Service
+public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService {
 
     @Override
     public Owner save(Owner owner) {
@@ -30,5 +33,11 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> {
     public void deleteById(Long id) {
         super.deleteById(id);
 
+    }
+
+    @Override
+    public Owner findByLastName(String lastName) {
+        Set<Owner> owners = super.findAll();
+        return owners.stream().filter(owner -> owner.getLastName().equalsIgnoreCase(lastName)).findFirst().get();
     }
 }

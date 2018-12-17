@@ -1,10 +1,13 @@
 package venkat.org.springframework.petclinic.services.map;
 
+import org.springframework.stereotype.Service;
 import venkat.org.springframework.petclinic.model.Pet;
+import venkat.org.springframework.petclinic.services.PetService;
 
 import java.util.Set;
 
-public class PetServiceMap extends AbstractMapService<Pet, Long> {
+@Service
+public class PetServiceMap extends AbstractMapService<Pet, Long> implements PetService {
 
     @Override
     public Pet save(Pet pet) {
