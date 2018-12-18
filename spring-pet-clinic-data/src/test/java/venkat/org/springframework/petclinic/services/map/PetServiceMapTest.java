@@ -55,7 +55,6 @@ public class PetServiceMapTest extends PersonTest {
             owner.setLastName("Utla");
 
             Pet pet = new Pet();
-            pet.setId(2000L);
             pet.setPetType(new PetType("Tommy"));
             pet.setOwner(owner);
             pet.setBirthDate(LocalDate.now());

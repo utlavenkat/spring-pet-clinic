@@ -34,7 +34,6 @@ public class OwnerServiceMapTest {
     public void insert() {
 
         Owner owner = new Owner();
-        owner.setId(2000L);
         owner.setFirstName("Venkat");
         owner.setLastName("Utla");
 
@@ -61,7 +60,6 @@ public class OwnerServiceMapTest {
     @Test
     public void findAll() {
         Owner owner = new Owner();
-        owner.setId(2000L);
         owner.setFirstName("Venkat");
         owner.setLastName("Utla");
         ownerServiceMap.map.put(owner.getId(), owner);

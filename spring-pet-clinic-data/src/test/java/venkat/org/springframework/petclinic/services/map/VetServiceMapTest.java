@@ -40,7 +40,6 @@ public class VetServiceMapTest extends PersonTest {
     public void insert() {
         {
             Vet vet = new Vet();
-            vet.setId(2000L);
             vet.setFirstName("Lakshmi Prasad");
             vet.setLastName("B");
 
