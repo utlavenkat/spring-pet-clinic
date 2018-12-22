@@ -32,10 +32,17 @@ public class LoadData implements CommandLineRunner {
     public void run(String... args) {
 
         PetType dog = new PetType("Dog");
-        PetType savedDogPetType = petTypeService.save(dog);
-
         PetType cat = new PetType("Cat");
-        PetType savedCatPetType = petTypeService.save(cat);
+
+        Pet pet1 = new Pet();
+        pet1.setName("Johnny");
+        pet1.setBirthDate(LocalDate.now());
+        pet1.setPetType(dog);
+
+        Pet pet2 = new Pet();
+        pet2.setBirthDate(LocalDate.now());
+        pet2.setPetType(cat);
+        pet2.setName("Tommy");
 
         Owner owner1 = new Owner();
         owner1.setFirstName("Venkat");
@@ -43,6 +50,7 @@ public class LoadData implements CommandLineRunner {
         owner1.setAddress("HIG-68,KPHB");
         owner1.setCity("Hyderabad");
         owner1.setTelephone("9100912536");
+        owner1.getPets().add(pet1);
 
         ownerService.save(owner1);
 
@@ -51,7 +59,7 @@ public class LoadData implements CommandLineRunner {
         owner2.setLastName("Utla");
         owner2.setAddress("HIG-68,KPHB Colony");
         owner2.setTelephone("9186599677");
-
+        owner2.getPets().add(pet2);
         ownerService.save(owner2);
 
         Vet vet1 = new Vet();
@@ -65,20 +73,6 @@ public class LoadData implements CommandLineRunner {
         vet2.setLastName("Gopisetty");
 
         vetService.save(vet2);
-
-        Pet pet1 = new Pet();
-        pet1.setOwner(owner1);
-        pet1.setBirthDate(LocalDate.now());
-        pet1.setPetType(savedDogPetType);
-
-        petService.save(pet1);
-
-        Pet pet2 = new Pet();
-        pet2.setOwner(owner2);
-        pet2.setBirthDate(LocalDate.now());
-        pet2.setPetType(savedCatPetType);
-
-        petService.save(pet2);
 
         System.out.println("Owners size::" + ownerService.findAll().size());
         System.out.println("Veterian size::" + vetService.findAll().size());

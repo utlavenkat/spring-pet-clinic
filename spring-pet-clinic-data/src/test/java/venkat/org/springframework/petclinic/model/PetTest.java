@@ -32,7 +32,7 @@ public class PetTest extends PersonTest {
     @Test
     public void testShouldConstructUsingAllArgConstruct() {
         LocalDate localDate = LocalDate.now();
-        Pet pet = new Pet(petType, owner, localDate);
+        Pet pet = new Pet("Tommy",petType, owner, localDate);
         Assert.assertNotNull("Object is null", pet);
         Assert.assertEquals("Owner Object not matched", owner, pet.getOwner());
         Assert.assertEquals("Pet Type not matched", petType, pet.getPetType());
