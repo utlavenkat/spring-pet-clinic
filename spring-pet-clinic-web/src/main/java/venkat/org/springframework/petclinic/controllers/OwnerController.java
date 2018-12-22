@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import venkat.org.springframework.petclinic.services.OwnerService;
 
 @Controller
+@RequestMapping("/owners")
 public class OwnerController {
 
     private OwnerService ownerService;
@@ -15,10 +16,15 @@ public class OwnerController {
         this.ownerService = ownerService;
     }
 
-    @RequestMapping(value = {"/owners", "/owners/index", "/owners/index.html"}, method = {RequestMethod.GET})
+    @RequestMapping(value = {"/", "/index", "/index.html"}, method = {RequestMethod.GET})
     public String listOwners(Model model) {
         model.addAttribute("owners", ownerService.findAll());
         return "owners/index";
+    }
+
+    @RequestMapping("/find")
+    public String findOwner(){
+        return "notimplemented";
     }
 
 
