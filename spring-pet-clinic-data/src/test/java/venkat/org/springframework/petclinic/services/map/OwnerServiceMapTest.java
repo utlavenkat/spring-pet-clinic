@@ -1,5 +1,6 @@
 package venkat.org.springframework.petclinic.services.map;
 
+import org.hamcrest.Matchers;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -17,7 +18,7 @@ public class OwnerServiceMapTest {
     public void setUp() {
         Map<Long, Owner> map = new HashMap<>();
         Owner owner = new Owner();
-        owner.setId(1000L);
+        owner.setId(1L);
         owner.setFirstName("RamaKrishna");
         owner.setLastName("Reddy");
         map.put(owner.getId(), owner);
@@ -47,7 +48,7 @@ public class OwnerServiceMapTest {
     public void update() {
 
         Owner owner = new Owner();
-        owner.setId(1000L);
+        owner.setId(1L);
         owner.setFirstName("Venkat");
         owner.setLastName("Utla");
 
@@ -59,27 +60,22 @@ public class OwnerServiceMapTest {
 
     @Test
     public void findAll() {
-        Owner owner = new Owner();
-        owner.setFirstName("Venkat");
-        owner.setLastName("Utla");
-        ownerServiceMap.map.put(owner.getId(), owner);
-
         int mapSize = ownerServiceMap.findAll().size();
-        Assert.assertEquals("findAll test is failed", 2, mapSize);
+        Assert.assertEquals("findAll test is failed", 1, mapSize);
     }
 
     @Test
     public void findById() {
-        Owner owner = ownerServiceMap.findById(1000L);
+        Owner owner = ownerServiceMap.findById(1L);
         Assert.assertNotNull("FindById is failed", owner);
-        Assert.assertEquals("Owner Id not matched in findById", 1000L, owner.getId().longValue());
+        Assert.assertEquals("Owner Id not matched in findById", 1L, owner.getId().longValue());
     }
 
     @Test
     public void delete() {
         int initialSize = ownerServiceMap.map.size();
         Owner owner = new Owner();
-        owner.setId(1000L);
+        owner.setId(1L);
         owner.setFirstName("RamaKrishna");
         owner.setLastName("Reddy");
         ownerServiceMap.delete(owner);
@@ -92,8 +88,15 @@ public class OwnerServiceMapTest {
     @Test
     public void deleteById() {
         int initialSize = ownerServiceMap.map.size();
-        ownerServiceMap.deleteById(1000L);
+        ownerServiceMap.deleteById(1L);
         int sizeAfterDelete = ownerServiceMap.map.size();
         Assert.assertEquals("Delete by ID is failed", initialSize - 1, sizeAfterDelete);
+    }
+
+    @Test
+    public void testFindByLastName() {
+       Owner owner = ownerServiceMap.findByLastName("Reddy");
+       Assert.assertNotNull("Unable to locate the owner",owner);
+       Assert.assertThat(owner.getLastName(), Matchers.equalToIgnoringCase("Reddy"));
     }
 }

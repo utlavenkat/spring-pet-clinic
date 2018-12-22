@@ -69,14 +69,8 @@ public class VetServiceMapTest extends PersonTest {
 
     @Test
     public void findAll() {
-        Vet vet = new Vet();
-        vet.setId(2000L);
-        vet.setFirstName("Lakshmi Prasad");
-        vet.setLastName("B");
-        vetServiceMap.map.put(vet.getId(), vet);
-
         int mapSize = vetServiceMap.findAll().size();
-        Assert.assertEquals("findAll test is failed", 2, mapSize);
+        Assert.assertEquals("findAll test is failed", 1, mapSize);
     }
 
     @Test
