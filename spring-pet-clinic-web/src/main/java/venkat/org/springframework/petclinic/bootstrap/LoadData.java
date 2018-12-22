@@ -4,14 +4,8 @@ package venkat.org.springframework.petclinic.bootstrap;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import venkat.org.springframework.petclinic.model.Owner;
-import venkat.org.springframework.petclinic.model.Pet;
-import venkat.org.springframework.petclinic.model.PetType;
-import venkat.org.springframework.petclinic.model.Vet;
-import venkat.org.springframework.petclinic.services.OwnerService;
-import venkat.org.springframework.petclinic.services.PetService;
-import venkat.org.springframework.petclinic.services.PetTypeService;
-import venkat.org.springframework.petclinic.services.VetService;
+import venkat.org.springframework.petclinic.model.*;
+import venkat.org.springframework.petclinic.services.*;
 
 import java.time.LocalDate;
 
@@ -27,6 +21,7 @@ public class LoadData implements CommandLineRunner {
 
     private final PetTypeService petTypeService;
 
+    private final SpecialityService specialityService;
 
     @Override
     public void run(String... args) {
@@ -66,18 +61,24 @@ public class LoadData implements CommandLineRunner {
         vet1.setFirstName("Hanshitha");
         vet1.setLastName("Utla");
 
+        Speciality hanshithaSpeciality = new Speciality("General");
+        vet1.getSpecialities().add(hanshithaSpeciality);
+
         vetService.save(vet1);
 
         Vet vet2 = new Vet();
         vet2.setFirstName("Divnesh");
         vet2.setLastName("Gopisetty");
 
+        Speciality divneshSpeciality = new Speciality("Dietician");
+        vet2.getSpecialities().add(divneshSpeciality);
         vetService.save(vet2);
 
         System.out.println("Owners size::" + ownerService.findAll().size());
         System.out.println("Veterian size::" + vetService.findAll().size());
         System.out.println("Pet size::" + petService.findAll().size());
         System.out.println("Pet Types Size::"+petTypeService.findAll().size());
+        System.out.println("Specialities Size::"+specialityService.findAll().size());
 
     }
 }

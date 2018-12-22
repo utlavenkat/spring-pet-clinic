@@ -5,7 +5,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import venkat.org.springframework.petclinic.model.PersonTest;
+import venkat.org.springframework.petclinic.model.Speciality;
 import venkat.org.springframework.petclinic.model.Vet;
+import venkat.org.springframework.petclinic.services.SpecialityService;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +18,7 @@ public class VetServiceMapTest extends PersonTest {
     @Before
     public void setUp() {
         {
-
+            SpecialityService specialityService = new SpecialityServiceMap();
             Vet vet = new Vet();
             vet.setId(1000L);
             vet.setFirstName("Lakshmi Narayana");
@@ -26,7 +28,7 @@ public class VetServiceMapTest extends PersonTest {
             Map<Long, Vet> map = new HashMap<>();
             map.put(vet.getId(), vet);
 
-            vetServiceMap = new VetServiceMap();
+            vetServiceMap = new VetServiceMap(specialityService);
             vetServiceMap.map = map;
         }
     }
@@ -43,10 +45,30 @@ public class VetServiceMapTest extends PersonTest {
             vet.setFirstName("Lakshmi Prasad");
             vet.setLastName("B");
 
-            int initialSize = vetServiceMap.map.size();
-            vetServiceMap.save(vet);
-            Assert.assertEquals("Insert is not successful", initialSize + 1, vetServiceMap.map.size());
+            Speciality general = new Speciality("General");
+            vet.getSpecialities().add(general);
 
+            int initialSize = vetServiceMap.map.size();
+            Vet savedVet = vetServiceMap.save(vet);
+            Object[] savedSpecialities = savedVet.getSpecialities().toArray();
+            Speciality savedSpeciality = (Speciality)savedSpecialities[0];
+            Assert.assertEquals("Insert is not successful", initialSize + 1, vetServiceMap.map.size());
+            Assert.assertNotNull("Id is not set", savedSpeciality.getId());
+
+        }
+    }
+
+    @Test
+    public void testShouldInsertWithoutSpeciality() {
+        {
+            Vet vet = new Vet();
+            vet.setFirstName("Lakshmi Prasad");
+            vet.setLastName("B");
+
+            int initialSize = vetServiceMap.map.size();
+            Vet savedVet = vetServiceMap.save(vet);
+
+            Assert.assertEquals("Insert is not successful", initialSize + 1, vetServiceMap.map.size());
         }
     }
 
@@ -100,6 +122,11 @@ public class VetServiceMapTest extends PersonTest {
         vetServiceMap.deleteById(1000L);
         int sizeAfterDelete = vetServiceMap.map.size();
         Assert.assertEquals("Delete by ID is failed", initialSize - 1, sizeAfterDelete);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testShouldThowExceptionWhenNullVet(){
+        vetServiceMap.save(null);
     }
 
 }

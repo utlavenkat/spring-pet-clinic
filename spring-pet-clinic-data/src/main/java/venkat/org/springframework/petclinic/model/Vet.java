@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -12,6 +13,6 @@ import java.util.Set;
 @Getter
 public class Vet extends Person {
 
-    private Set<Speciality> specialities;
+    private Set<Speciality> specialities = new HashSet<>();
 
 }
