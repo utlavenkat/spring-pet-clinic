@@ -1,12 +1,15 @@
 package venkat.org.springframework.petclinic.model;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.Set;
 
 @NoArgsConstructor
-@Data
+@Setter
+@Getter
 public class Vet extends Person {
 
     private Set<Speciality> specialities;
