@@ -99,4 +99,22 @@ public class OwnerServiceMapTest {
        Assert.assertNotNull("Unable to locate the owner",owner);
        Assert.assertThat(owner.getLastName(), Matchers.equalToIgnoringCase("Reddy"));
     }
+
+    @Test(expected = RuntimeException.class)
+    public void testNullObjectSave() {
+        Owner owner = null;
+        ownerServiceMap.save(owner);
+    }
+
+    @Test
+    public void testEmptyMapReturnsExpectedSequence() {
+        ownerServiceMap.map = new HashMap<Long,Owner>();
+
+        Owner owner = new Owner();
+        owner.setFirstName("Venkat");
+        owner.setLastName("Utla");
+       Assert.assertEquals("Empty Map did not return correct sequence",1, ownerServiceMap.save(owner).getId().intValue());
+
+    }
+
 }
