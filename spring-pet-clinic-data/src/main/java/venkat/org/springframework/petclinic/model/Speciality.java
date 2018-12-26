@@ -1,12 +1,17 @@
 package venkat.org.springframework.petclinic.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
+import javax.persistence.*;
+
 
 @NoArgsConstructor
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Data
+@Entity
+@Table(name = "specialities")
 public class Speciality extends BaseEntity {
+    @Column(name = "description")
+    @NonNull
     private String description;
 }

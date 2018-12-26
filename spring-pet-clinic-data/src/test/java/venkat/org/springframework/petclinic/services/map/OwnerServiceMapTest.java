@@ -44,7 +44,6 @@ public class OwnerServiceMapTest {
 
         PetType dog = new PetType("Dog");
 
-        Pet tommy = new Pet("Tommy",dog,null, LocalDate.now());
 
         Owner owner = new Owner();
         owner.setFirstName("Venkat");
@@ -52,6 +51,9 @@ public class OwnerServiceMapTest {
         owner.setTelephone("9100912536");
         owner.setAddress("HIG-68,KPHB");
         owner.setAddress("Hyderabad");
+
+        Pet tommy = new Pet("Tommy",dog,owner, LocalDate.now());
+
         owner.getPets().add(tommy);
         tommy.setOwner(owner);
 

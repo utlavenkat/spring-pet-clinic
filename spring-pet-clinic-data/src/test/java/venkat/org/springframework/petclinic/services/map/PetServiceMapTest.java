@@ -93,7 +93,6 @@ public class PetServiceMapTest extends PersonTest {
         Pet pet = new Pet();
         pet.setId(2000L);
         pet.setPetType(new PetType("Tommy"));
-        pet.setOwner(null);
         pet.setBirthDate(LocalDate.now());
         petServiceMap.map.put(pet.getId(), pet);
 

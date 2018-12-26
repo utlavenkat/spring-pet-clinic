@@ -3,6 +3,8 @@ package venkat.org.springframework.petclinic.services.map;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import venkat.org.springframework.petclinic.model.Vet;
@@ -12,6 +14,8 @@ import venkat.org.springframework.petclinic.services.VetService;
 import java.util.Set;
 
 @Service
+@Qualifier("vetServiceMap")
+@Primary
 @NoArgsConstructor
 @AllArgsConstructor
 public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {

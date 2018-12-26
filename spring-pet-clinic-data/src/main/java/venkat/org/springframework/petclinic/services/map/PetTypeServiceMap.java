@@ -1,5 +1,7 @@
 package venkat.org.springframework.petclinic.services.map;
 
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import venkat.org.springframework.petclinic.model.PetType;
 import venkat.org.springframework.petclinic.services.PetTypeService;
@@ -7,6 +9,8 @@ import venkat.org.springframework.petclinic.services.PetTypeService;
 import java.util.Set;
 
 @Service
+@Primary
+@Qualifier("petTypeServiceMap")
 public class PetTypeServiceMap extends AbstractMapService<PetType,Long> implements PetTypeService {
 
     @Override
