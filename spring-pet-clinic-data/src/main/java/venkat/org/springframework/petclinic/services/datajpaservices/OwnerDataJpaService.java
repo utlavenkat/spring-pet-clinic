@@ -3,18 +3,19 @@ package venkat.org.springframework.petclinic.services.datajpaservices;
 import lombok.AllArgsConstructor;
 
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import venkat.org.springframework.petclinic.model.Owner;
 import venkat.org.springframework.petclinic.repositories.OwnerRepository;
 import venkat.org.springframework.petclinic.services.OwnerService;
 
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 @Service
 @AllArgsConstructor
 @Qualifier("ownerServiceJpa")
+@Profile({"springdatajpa"})
 public class OwnerDataJpaService implements OwnerService {
 
     private final OwnerRepository ownerRepository;

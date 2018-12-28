@@ -7,6 +7,7 @@ import javax.persistence.*;
 
 @NoArgsConstructor
 @RequiredArgsConstructor
+@EqualsAndHashCode(callSuper = true,onlyExplicitlyIncluded = true)
 @Data
 @Entity
 @Table(name = "specialities")

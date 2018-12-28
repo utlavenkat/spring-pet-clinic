@@ -1,20 +1,19 @@
 package venkat.org.springframework.petclinic.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @NoArgsConstructor
-@AllArgsConstructor
+@RequiredArgsConstructor
+@EqualsAndHashCode(callSuper = true,onlyExplicitlyIncluded = true)
 @Data
 @Entity
 @Table(name = "types")
 public class PetType extends BaseEntity {
+    @NonNull
     @Column(name = "name")
     private String name;
 }

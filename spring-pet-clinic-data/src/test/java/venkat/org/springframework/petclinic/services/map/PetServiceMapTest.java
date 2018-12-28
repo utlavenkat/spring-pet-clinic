@@ -20,7 +20,7 @@ public class PetServiceMapTest extends PersonTest {
     @Before
     public void setUp() {
         {
-            Owner owner = new Owner();
+            Owner owner = new Owner("HIG-68,KPHB","Hyderabad","9100912536");
             owner.setId(1000L);
             owner.setFirstName("RamaKrishna");
             owner.setLastName("Reddy");
@@ -49,7 +49,7 @@ public class PetServiceMapTest extends PersonTest {
     public void insert() {
         {
 
-            Owner owner = new Owner();
+            Owner owner = new Owner("HIG-68,KPHB","Hyderabad","9100912536");
             owner.setId(2000L);
             owner.setFirstName("Venkat");
             owner.setLastName("Utla");
@@ -70,7 +70,7 @@ public class PetServiceMapTest extends PersonTest {
     public void update() {
         {
 
-            Owner owner = new Owner();
+            Owner owner = new Owner("HIG-68,KPHB","Hyderabad","9100912536");
             owner.setId(1000L);
             owner.setFirstName("RamaKrishna");
             owner.setLastName("Reddy");
@@ -110,7 +110,7 @@ public class PetServiceMapTest extends PersonTest {
     @Test
     public void delete() {
         int initialSize = petServiceMap.map.size();
-        Owner owner = new Owner();
+        Owner owner = new Owner("HIG-68,KPHB","Hyderabad","9100912536");
         owner.setId(1000L);
         owner.setFirstName("RamaKrishna");
         owner.setLastName("Reddy");

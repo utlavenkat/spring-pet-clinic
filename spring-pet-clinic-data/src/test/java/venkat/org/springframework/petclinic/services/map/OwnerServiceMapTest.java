@@ -22,7 +22,7 @@ public class OwnerServiceMapTest {
     @Before
     public void setUp() {
         Map<Long, Owner> map = new HashMap<>();
-        Owner owner = new Owner();
+        Owner owner = new Owner("HIG-68,KPHB","Hyderabad","9100912536");
         owner.setId(1L);
         owner.setFirstName("RamaKrishna");
         owner.setLastName("Reddy");
@@ -45,12 +45,9 @@ public class OwnerServiceMapTest {
         PetType dog = new PetType("Dog");
 
 
-        Owner owner = new Owner();
+        Owner owner = new Owner("HIG-68,KPHB","Hyderabad","9100912536");
         owner.setFirstName("Venkat");
         owner.setLastName("Utla");
-        owner.setTelephone("9100912536");
-        owner.setAddress("HIG-68,KPHB");
-        owner.setAddress("Hyderabad");
 
         Pet tommy = new Pet("Tommy",dog,owner, LocalDate.now());
 
@@ -73,7 +70,7 @@ public class OwnerServiceMapTest {
     @Test
     public void update() {
 
-        Owner owner = new Owner();
+        Owner owner = new Owner("HIG-68,KPHB","Hyderabad","9100912536");
         owner.setId(1L);
         owner.setFirstName("Venkat");
         owner.setLastName("Utla");
@@ -100,7 +97,7 @@ public class OwnerServiceMapTest {
     @Test
     public void delete() {
         int initialSize = ownerServiceMap.map.size();
-        Owner owner = new Owner();
+        Owner owner = new Owner("HIG-68,KPHB","Hyderabad","9100912536");
         owner.setId(1L);
         owner.setFirstName("RamaKrishna");
         owner.setLastName("Reddy");
@@ -136,7 +133,7 @@ public class OwnerServiceMapTest {
     public void testEmptyMapReturnsExpectedSequence() {
         ownerServiceMap.map = new HashMap<Long,Owner>();
 
-        Owner owner = new Owner();
+        Owner owner = new Owner("HIG-68,KPHB","Hyderabad","9100912536");
         owner.setFirstName("Venkat");
         owner.setLastName("Utla");
        Assert.assertEquals("Empty Map did not return correct sequence",1, ownerServiceMap.save(owner).getId().intValue());
@@ -152,7 +149,7 @@ public class OwnerServiceMapTest {
     public void testSaveNullPetType() {
         Pet tommy = new Pet("Tommy",null,null, LocalDate.now());
 
-        Owner owner = new Owner();
+        Owner owner = new Owner("HIG-68,KPHB","Hyderabad","9100912536");
         owner.setFirstName("Venkat");
         owner.setLastName("Utla");
         owner.setTelephone("9100912536");

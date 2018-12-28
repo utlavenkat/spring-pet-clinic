@@ -9,7 +9,7 @@ public class OwnerTest {
 
     @Test
     public void testShouldConstruct() {
-        Owner owner = new Owner();
+        Owner owner = new Owner("HIG-68,KPHB","Hyderabad","9100912536");
         owner.setFirstName("venkat");
         owner.setLastName("utla");
         Assert.assertNotNull(owner);

@@ -13,7 +13,7 @@ public class PetTest extends PersonTest {
 
     @Before
     public void setup() {
-        owner = new Owner();
+        owner = new Owner("HIG-68,KPHB","Hyderabad","9100912536");
         petType = new PetType();
     }
 

@@ -1,15 +1,15 @@
 package venkat.org.springframework.petclinic.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
+
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
+
 @NoArgsConstructor
-@AllArgsConstructor
+@RequiredArgsConstructor
+@EqualsAndHashCode(callSuper = true,onlyExplicitlyIncluded = true)
 @Data
 @MappedSuperclass
 public class Person extends BaseEntity {

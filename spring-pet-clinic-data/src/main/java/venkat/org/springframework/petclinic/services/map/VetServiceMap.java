@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import venkat.org.springframework.petclinic.model.Vet;
@@ -18,6 +19,7 @@ import java.util.Set;
 @Primary
 @NoArgsConstructor
 @AllArgsConstructor
+@Profile({"default","map"})
 public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
     @Autowired
     private  SpecialityService specialityService;

@@ -8,8 +8,8 @@ import java.util.Set;
 
 @NoArgsConstructor
 @RequiredArgsConstructor
-@Setter
-@Getter
+@EqualsAndHashCode(callSuper = true,onlyExplicitlyIncluded = true)
+@Data
 @Entity
 @Table(name = "owners")
 public class Owner extends Person {

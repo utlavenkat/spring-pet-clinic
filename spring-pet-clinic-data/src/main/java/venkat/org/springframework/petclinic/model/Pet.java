@@ -9,8 +9,8 @@ import java.util.Set;
 
 @NoArgsConstructor
 @RequiredArgsConstructor
-@Setter
-@Getter
+@EqualsAndHashCode(callSuper = true,onlyExplicitlyIncluded = true)
+@Data
 @Entity
 @Table(name = "Pets")
 public class Pet extends BaseEntity {
@@ -34,6 +34,7 @@ public class Pet extends BaseEntity {
     private LocalDate birthDate;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet")
+    @EqualsAndHashCode.Exclude
     private Set<Visit> visits = new HashSet<>();
 
     public Visit addVisit(Visit visit) {

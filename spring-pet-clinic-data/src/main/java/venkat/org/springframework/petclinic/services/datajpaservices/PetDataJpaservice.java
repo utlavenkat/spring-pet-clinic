@@ -2,6 +2,7 @@ package venkat.org.springframework.petclinic.services.datajpaservices;
 
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import venkat.org.springframework.petclinic.model.Pet;
 import venkat.org.springframework.petclinic.repositories.PetRepository;
@@ -14,6 +15,7 @@ import java.util.Set;
 @Service
 @AllArgsConstructor
 @Qualifier("petServiceJpa")
+@Profile({"springdatajpa"})
 public class PetDataJpaservice implements PetService {
 
     private final PetRepository petRepository;

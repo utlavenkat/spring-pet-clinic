@@ -3,6 +3,7 @@ package venkat.org.springframework.petclinic.services.datajpaservices;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import venkat.org.springframework.petclinic.model.Visit;
 import venkat.org.springframework.petclinic.repositories.VisitRepository;
@@ -14,6 +15,7 @@ import java.util.Set;
 @Service
 @NoArgsConstructor
 @AllArgsConstructor
+@Profile({"springdatajpa"})
 public class VisitJpaService implements VisitService {
     @Autowired
     private VisitRepository visitRepository;

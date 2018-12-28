@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import venkat.org.springframework.petclinic.model.Vet;
 import venkat.org.springframework.petclinic.repositories.VetRepository;
@@ -17,6 +18,7 @@ import java.util.Set;
 @Qualifier("vetServiceJpa")
 @NoArgsConstructor
 @AllArgsConstructor
+@Profile({"springdatajpa"})
 public class VetJpaService implements VetService {
     @Autowired
     private VetRepository vetRepository;
