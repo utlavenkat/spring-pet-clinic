@@ -2,6 +2,7 @@ package venkat.org.springframework.petclinic.services.map;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
@@ -44,9 +45,9 @@ public class VisitServiceMap extends AbstractMapService<Visit,Long> implements V
     public Visit save(Visit visit) {
         {
             if(visit != null) {
-                Pet pet = visit.getPet();
+                val pet = visit.getPet();
                 if(pet != null)  {
-                    PetType petType = pet.getPetType();
+                    val petType = pet.getPetType();
                     if(petType != null) {
                         pet.setPetType(petTypeService.save(petType));
                     }

@@ -1,5 +1,7 @@
 package venkat.org.springframework.petclinic.services.map;
 
+import lombok.val;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -10,8 +12,6 @@ import venkat.org.springframework.petclinic.model.Speciality;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.Assert.*;
-
 public class SpecialityServiceMapTest extends PersonTest {
 
     private SpecialityServiceMap specialityServiceMap;
@@ -19,10 +19,10 @@ public class SpecialityServiceMapTest extends PersonTest {
     @Before
     public void setUp()  {
 
-        Speciality speciality = new Speciality("General");
+        val speciality = new Speciality("General");
         speciality.setId(1L);
 
-        Map<Long,Speciality> specialityMap = new HashMap<>();
+        val specialityMap = new HashMap<>();
         specialityMap.put(speciality.getId(),speciality);
 
         specialityServiceMap = new SpecialityServiceMap();
@@ -41,7 +41,7 @@ public class SpecialityServiceMapTest extends PersonTest {
 
     @Test
     public void findById() {
-        Speciality speciality = specialityServiceMap.findById(1L);
+        val speciality = specialityServiceMap.findById(1L);
         Assert.assertNotNull("Speciality is null",speciality);
     }
 
@@ -56,7 +56,7 @@ public class SpecialityServiceMapTest extends PersonTest {
 
     @Test
     public void delete() {
-        Speciality speciality = new Speciality("General");
+        val speciality = new Speciality("General");
         speciality.setId(1L);
         specialityServiceMap.delete(speciality);
         Assert.assertNull("Delete is not successful", specialityServiceMap.map.get(1L));

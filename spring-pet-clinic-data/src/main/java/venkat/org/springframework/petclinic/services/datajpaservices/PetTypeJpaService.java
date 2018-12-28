@@ -2,6 +2,7 @@ package venkat.org.springframework.petclinic.services.datajpaservices;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Profile;
@@ -24,7 +25,7 @@ public class PetTypeJpaService implements PetTypeService {
 
     @Override
     public Set<PetType> findAll() {
-        Set<PetType> petTypes = new HashSet<>();
+        val petTypes = new HashSet<>();
         petTypeRepository.findAll().forEach(petTypes::add);
         return petTypes;
     }

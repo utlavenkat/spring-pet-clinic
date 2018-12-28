@@ -2,6 +2,7 @@ package venkat.org.springframework.petclinic.services.datajpaservices;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Profile;
@@ -11,7 +12,6 @@ import venkat.org.springframework.petclinic.repositories.VetRepository;
 import venkat.org.springframework.petclinic.services.VetService;
 
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -25,7 +25,7 @@ public class VetJpaService implements VetService {
 
     @Override
     public Set<Vet> findAll() {
-        Set<Vet> vets = new HashSet<>();
+        val vets = new HashSet<>();
         vetRepository.findAll().forEach(vets::add);
         return vets;
     }

@@ -2,6 +2,7 @@ package venkat.org.springframework.petclinic.services.datajpaservices;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,7 @@ public class VisitJpaService implements VisitService {
 
     @Override
     public Set<Visit> findAll() {
-        Set<Visit> visits = new HashSet<>();
+        val visits = new HashSet<>();
         visitRepository.findAll().forEach(visits::add);
         return visits;
     }

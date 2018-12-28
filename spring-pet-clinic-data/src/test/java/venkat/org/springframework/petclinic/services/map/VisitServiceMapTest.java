@@ -1,5 +1,6 @@
 package venkat.org.springframework.petclinic.services.map;
 
+import lombok.val;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -23,7 +24,7 @@ public class VisitServiceMapTest {
 
     @Before
     public void setUp() {
-        Map<Long,Visit> map = new HashMap<>();
+        val map = new HashMap<>();
         testVisit = new Visit(LocalTime.now(),"General Visit",null);
         testVisit.setId(1L);
         map.put(testVisit.getId(),testVisit);
@@ -42,11 +43,11 @@ public class VisitServiceMapTest {
 
     @Test
     public void insert() {
-        PetType petType = new PetType("TestPetType");
-        Pet pet = new Pet("TestPet",petType, new Owner("HIG-68,KPHB","Hyderabad","9100912536"), LocalDate.now());
-        Visit visit = new Visit(LocalTime.now(),"Test Visit",pet);
+        val petType = new PetType("TestPetType");
+        val pet = new Pet("TestPet",petType, new Owner("HIG-68,KPHB","Hyderabad","9100912536"), LocalDate.now());
+        val visit = new Visit(LocalTime.now(),"Test Visit",pet);
         int initialSize = visitServiceMap.map.size();
-        Visit savedVisit = visitServiceMap.save(visit);
+        val savedVisit = visitServiceMap.save(visit);
         Assert.assertEquals("Insert is not successful", initialSize + 1, visitServiceMap.map.size());
         Assert.assertNotNull("Visit ID is not generated",savedVisit.getId());
 
@@ -64,7 +65,7 @@ public class VisitServiceMapTest {
 
     @Test
     public void findById() {
-        Visit visit = visitServiceMap.findById(1L);
+        val visit = visitServiceMap.findById(1L);
         Assert.assertNotNull("FindById is failed", visit);
         Assert.assertEquals("Owner Id not matched in findById", 1L, visit.getId().longValue());
     }
@@ -72,7 +73,7 @@ public class VisitServiceMapTest {
     @Test
     public void delete() {
         int initialSize = visitServiceMap.map.size();
-        Visit visit = new Visit(LocalTime.now(),"General Visit",null);
+        val visit = new Visit(LocalTime.now(),"General Visit",null);
         visit.setId(1L);
         visitServiceMap.delete(visit);
         int sizeAfterDelete = visitServiceMap.map.size();
@@ -92,16 +93,15 @@ public class VisitServiceMapTest {
 
     @Test(expected = RuntimeException.class)
     public void testNullObjectSave() {
-        Visit visit = null;
-        visitServiceMap.save(visit);
+        visitServiceMap.save(null);
     }
 
     @Test
     public void testEmptyMapReturnsExpectedSequence() {
         visitServiceMap.map = new HashMap<Long,Visit>();
-        PetType petType = new PetType("TestPetType");
-        Pet pet = new Pet("TestPet",petType,new Owner("HIG-68,KPHB","Hyderabad","9100912536"), LocalDate.now());
-        Visit visit = new Visit(LocalTime.now(),"General Visit",pet);
+        val petType = new PetType("TestPetType");
+        val pet = new Pet("TestPet",petType,new Owner("HIG-68,KPHB","Hyderabad","9100912536"), LocalDate.now());
+        val visit = new Visit(LocalTime.now(),"General Visit",pet);
         Assert.assertEquals("Empty Map did not return correct sequence",1, visitServiceMap.save(visit).getId().intValue());
 
     }
@@ -113,7 +113,7 @@ public class VisitServiceMapTest {
 
     @Test(expected = RuntimeException.class)
     public void testSaveNullPet() {
-        Visit visit = new Visit(LocalTime.now(),"General Visit",null);
+        val visit = new Visit(LocalTime.now(),"General Visit",null);
         visitServiceMap.save(visit);
     }
 }

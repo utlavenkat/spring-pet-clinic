@@ -1,5 +1,7 @@
 package venkat.org.springframework.petclinic.model;
 
+import lombok.val;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -25,14 +27,14 @@ public class PetTest extends PersonTest {
 
     @Test
     public void testShouldConstructUsingDefaultConstruct() {
-        Pet pet = new Pet();
+        val pet = new Pet();
         Assert.assertNotNull(pet);
     }
 
     @Test
     public void testShouldConstructUsingAllArgConstruct() {
-        LocalDate localDate = LocalDate.now();
-        Pet pet = new Pet("Tommy",petType, owner, localDate);
+        val localDate = LocalDate.now();
+        val pet = new Pet("Tommy",petType, owner, localDate);
         Assert.assertNotNull("Object is null", pet);
         Assert.assertEquals("Owner Object not matched", owner, pet.getOwner());
         Assert.assertEquals("Pet Type not matched", petType, pet.getPetType());
@@ -40,8 +42,8 @@ public class PetTest extends PersonTest {
 
     @Test
     public void testSettersAndGetters() {
-        Pet pet = new Pet();
-        LocalDate birthDate = LocalDate.now();
+        val pet = new Pet();
+        val birthDate = LocalDate.now();
         pet.setBirthDate(birthDate);
         pet.setOwner(owner);
         pet.setPetType(petType);

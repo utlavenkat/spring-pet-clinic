@@ -1,6 +1,7 @@
 package venkat.org.springframework.petclinic.services.datajpaservices;
 
 import lombok.AllArgsConstructor;
+import lombok.val;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Profile;
@@ -27,7 +28,7 @@ public class OwnerDataJpaService implements OwnerService {
 
     @Override
     public Set<Owner> findAll() {
-        Set<Owner> owners = new HashSet<>();
+        val owners = new HashSet<>();
         ownerRepository.findAll().forEach(owners::add);
         return owners;
     }

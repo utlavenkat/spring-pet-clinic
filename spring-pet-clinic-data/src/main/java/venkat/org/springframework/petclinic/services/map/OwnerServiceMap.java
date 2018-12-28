@@ -2,6 +2,7 @@ package venkat.org.springframework.petclinic.services.map;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
@@ -9,7 +10,6 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import venkat.org.springframework.petclinic.model.Owner;
-import venkat.org.springframework.petclinic.model.Pet;
 import venkat.org.springframework.petclinic.services.OwnerService;
 import venkat.org.springframework.petclinic.services.PetService;
 import venkat.org.springframework.petclinic.services.PetTypeService;
@@ -38,7 +38,7 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
                    } else {
                        throw new RuntimeException("PetType cannot be null");
                    }
-                    Pet savedPet = petService.save(pet);
+                    val savedPet = petService.save(pet);
                     pet.setId(savedPet.getId());
                });
             }
@@ -71,7 +71,7 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
 
     @Override
     public Owner findByLastName(String lastName) {
-        Set<Owner> owners = super.findAll();
+        val owners = super.findAll();
         return owners.stream().filter(owner -> owner.getLastName().equalsIgnoreCase(lastName)).findFirst().get();
     }
 }

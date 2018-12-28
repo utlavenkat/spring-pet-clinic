@@ -1,5 +1,7 @@
 package venkat.org.springframework.petclinic.services.map;
 
+import lombok.val;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -18,14 +20,14 @@ public class VetServiceMapTest extends PersonTest {
     @Before
     public void setUp() {
         {
-            SpecialityService specialityService = new SpecialityServiceMap();
+            val specialityService = new SpecialityServiceMap();
             Vet vet = new Vet();
             vet.setId(1000L);
             vet.setFirstName("Lakshmi Narayana");
             vet.setLastName("S");
 
 
-            Map<Long, Vet> map = new HashMap<>();
+            val map = new HashMap<>();
             map.put(vet.getId(), vet);
 
             vetServiceMap = new VetServiceMap(specialityService);
@@ -41,17 +43,17 @@ public class VetServiceMapTest extends PersonTest {
     @Test
     public void insert() {
         {
-            Vet vet = new Vet();
+            val vet = new Vet();
             vet.setFirstName("Lakshmi Prasad");
             vet.setLastName("B");
 
-            Speciality general = new Speciality("General");
+            val general = new Speciality("General");
             vet.getSpecialities().add(general);
 
             int initialSize = vetServiceMap.map.size();
-            Vet savedVet = vetServiceMap.save(vet);
-            Object[] savedSpecialities = savedVet.getSpecialities().toArray();
-            Speciality savedSpeciality = (Speciality)savedSpecialities[0];
+            val savedVet = vetServiceMap.save(vet);
+            val savedSpecialities = savedVet.getSpecialities().toArray();
+            val savedSpeciality = (Speciality)savedSpecialities[0];
             Assert.assertEquals("Insert is not successful", initialSize + 1, vetServiceMap.map.size());
             Assert.assertNotNull("Id is not set", savedSpeciality.getId());
 
@@ -61,12 +63,12 @@ public class VetServiceMapTest extends PersonTest {
     @Test
     public void testShouldInsertWithoutSpeciality() {
         {
-            Vet vet = new Vet();
+            val vet = new Vet();
             vet.setFirstName("Lakshmi Prasad");
             vet.setLastName("B");
 
             int initialSize = vetServiceMap.map.size();
-            Vet savedVet = vetServiceMap.save(vet);
+            vetServiceMap.save(vet);
 
             Assert.assertEquals("Insert is not successful", initialSize + 1, vetServiceMap.map.size());
         }
@@ -77,7 +79,7 @@ public class VetServiceMapTest extends PersonTest {
         {
 
 
-            Vet vet = new Vet();
+            val vet = new Vet();
             vet.setId(1000L);
             vet.setFirstName("Lakshmi Prasad");
             vet.setLastName("B");
@@ -97,7 +99,7 @@ public class VetServiceMapTest extends PersonTest {
 
     @Test
     public void findById() {
-        Vet vet = vetServiceMap.findById(1000L);
+        val vet = vetServiceMap.findById(1000L);
         Assert.assertNotNull("FindById is failed", vet);
         Assert.assertEquals("Owner Id not matched in findById", 1000L, vet.getId().longValue());
     }
@@ -105,7 +107,7 @@ public class VetServiceMapTest extends PersonTest {
     @Test
     public void delete() {
         int initialSize = vetServiceMap.map.size();
-        Vet vet = new Vet();
+        val vet = new Vet();
         vet.setId(1000L);
         vet.setFirstName("Lakshmi Narayana");
         vet.setLastName("S");

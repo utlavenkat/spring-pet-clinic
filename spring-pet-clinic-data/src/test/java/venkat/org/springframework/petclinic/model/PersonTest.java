@@ -1,5 +1,6 @@
 package venkat.org.springframework.petclinic.model;
 
+import lombok.val;
 import org.hamcrest.Matchers;
 import org.junit.Assert;
 import org.junit.Test;
@@ -8,7 +9,7 @@ public class PersonTest {
 
     @Test
     public void testShouldConstruct() {
-        Person person = new Person("venkat", "utla");
+        val person = new Person("venkat", "utla");
         Assert.assertNotNull(person);
         Assert.assertThat("First Name is not matching", person.getFirstName(), Matchers.equalToIgnoringCase("VENKAT"));
         Assert.assertThat("Last Name is not matching", person.getLastName(), Matchers.equalToIgnoringCase("UTLA"));
@@ -16,7 +17,7 @@ public class PersonTest {
 
     @Test
     public void testSettersAndDefaultConstructor() {
-        Person person = new Person();
+        val person = new Person();
         person.setFirstName("Venkat");
         person.setLastName("Utla");
 

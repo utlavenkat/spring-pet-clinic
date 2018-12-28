@@ -1,5 +1,6 @@
 package venkat.org.springframework.petclinic.services.map;
 
+import lombok.val;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -20,19 +21,19 @@ public class PetServiceMapTest extends PersonTest {
     @Before
     public void setUp() {
         {
-            Owner owner = new Owner("HIG-68,KPHB","Hyderabad","9100912536");
+            val owner = new Owner("HIG-68,KPHB","Hyderabad","9100912536");
             owner.setId(1000L);
             owner.setFirstName("RamaKrishna");
             owner.setLastName("Reddy");
 
 
-            Pet pet = new Pet();
+            val pet = new Pet();
             pet.setId(1000L);
             pet.setPetType(new PetType("Johnny"));
             pet.setOwner(owner);
             pet.setBirthDate(LocalDate.now());
 
-            Map<Long, Pet> map = new HashMap<>();
+            val map = new HashMap<>();
             map.put(pet.getId(), pet);
 
             petServiceMap = new PetServiceMap();
@@ -49,12 +50,12 @@ public class PetServiceMapTest extends PersonTest {
     public void insert() {
         {
 
-            Owner owner = new Owner("HIG-68,KPHB","Hyderabad","9100912536");
+            val owner = new Owner("HIG-68,KPHB","Hyderabad","9100912536");
             owner.setId(2000L);
             owner.setFirstName("Venkat");
             owner.setLastName("Utla");
 
-            Pet pet = new Pet();
+            val pet = new Pet();
             pet.setPetType(new PetType("Tommy"));
             pet.setOwner(owner);
             pet.setBirthDate(LocalDate.now());
@@ -70,12 +71,12 @@ public class PetServiceMapTest extends PersonTest {
     public void update() {
         {
 
-            Owner owner = new Owner("HIG-68,KPHB","Hyderabad","9100912536");
+            val owner = new Owner("HIG-68,KPHB","Hyderabad","9100912536");
             owner.setId(1000L);
             owner.setFirstName("RamaKrishna");
             owner.setLastName("Reddy");
 
-            Pet pet = new Pet();
+            val pet = new Pet();
             pet.setId(1000L);
             pet.setPetType(new PetType("Tommy"));
             pet.setOwner(owner);
@@ -90,7 +91,7 @@ public class PetServiceMapTest extends PersonTest {
 
     @Test
     public void findAll() {
-        Pet pet = new Pet();
+        val pet = new Pet();
         pet.setId(2000L);
         pet.setPetType(new PetType("Tommy"));
         pet.setBirthDate(LocalDate.now());
@@ -102,7 +103,7 @@ public class PetServiceMapTest extends PersonTest {
 
     @Test
     public void findById() {
-        Pet pet = petServiceMap.findById(1000L);
+        val pet = petServiceMap.findById(1000L);
         Assert.assertNotNull("FindById is failed", pet);
         Assert.assertEquals("Owner Id not matched in findById", 1000L, pet.getId().longValue());
     }
@@ -110,13 +111,12 @@ public class PetServiceMapTest extends PersonTest {
     @Test
     public void delete() {
         int initialSize = petServiceMap.map.size();
-        Owner owner = new Owner("HIG-68,KPHB","Hyderabad","9100912536");
+        val owner = new Owner("HIG-68,KPHB","Hyderabad","9100912536");
         owner.setId(1000L);
         owner.setFirstName("RamaKrishna");
         owner.setLastName("Reddy");
 
-
-        Pet pet = new Pet();
+        val pet = new Pet();
         pet.setId(1000L);
         pet.setPetType(new PetType("Johnny"));
         pet.setOwner(owner);
