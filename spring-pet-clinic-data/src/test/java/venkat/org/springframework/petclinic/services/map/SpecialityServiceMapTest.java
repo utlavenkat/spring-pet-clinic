@@ -22,7 +22,7 @@ public class SpecialityServiceMapTest extends PersonTest {
         val speciality = new Speciality("General");
         speciality.setId(1L);
 
-        val specialityMap = new HashMap<>();
+        val specialityMap = new HashMap<Long,Speciality>();
         specialityMap.put(speciality.getId(),speciality);
 
         specialityServiceMap = new SpecialityServiceMap();

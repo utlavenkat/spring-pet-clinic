@@ -24,7 +24,7 @@ public class VisitServiceMapTest {
 
     @Before
     public void setUp() {
-        val map = new HashMap<>();
+        val map = new HashMap<Long,Visit>();
         testVisit = new Visit(LocalTime.now(),"General Visit",null);
         testVisit.setId(1L);
         map.put(testVisit.getId(),testVisit);

@@ -25,7 +25,7 @@ public class PetTypeJpaService implements PetTypeService {
 
     @Override
     public Set<PetType> findAll() {
-        val petTypes = new HashSet<>();
+        val petTypes = new HashSet<PetType>();
         petTypeRepository.findAll().forEach(petTypes::add);
         return petTypes;
     }

@@ -20,7 +20,7 @@ public class OwnerServiceMapTest {
 
     @Before
     public void setUp() {
-        val map = new HashMap<>();
+        val map = new HashMap<Long,Owner>();
         val owner = new Owner("HIG-68,KPHB","Hyderabad","9100912536");
         owner.setId(1L);
         owner.setFirstName("RamaKrishna");

@@ -28,7 +28,7 @@ public class OwnerDataJpaService implements OwnerService {
 
     @Override
     public Set<Owner> findAll() {
-        val owners = new HashSet<>();
+        val owners = new HashSet<Owner>();
         ownerRepository.findAll().forEach(owners::add);
         return owners;
     }

@@ -23,7 +23,7 @@ public class VisitJpaService implements VisitService {
 
     @Override
     public Set<Visit> findAll() {
-        val visits = new HashSet<>();
+        val visits = new HashSet<Visit>();
         visitRepository.findAll().forEach(visits::add);
         return visits;
     }

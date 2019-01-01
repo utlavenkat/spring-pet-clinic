@@ -25,7 +25,7 @@ public class VetJpaService implements VetService {
 
     @Override
     public Set<Vet> findAll() {
-        val vets = new HashSet<>();
+        val vets = new HashSet<Vet>();
         vetRepository.findAll().forEach(vets::add);
         return vets;
     }

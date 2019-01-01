@@ -27,7 +27,7 @@ public class VetServiceMapTest extends PersonTest {
             vet.setLastName("S");
 
 
-            val map = new HashMap<>();
+            val map = new HashMap<Long,Vet>();
             map.put(vet.getId(), vet);
 
             vetServiceMap = new VetServiceMap(specialityService);

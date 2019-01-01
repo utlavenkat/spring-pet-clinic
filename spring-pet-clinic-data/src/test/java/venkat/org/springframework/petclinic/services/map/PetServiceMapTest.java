@@ -33,7 +33,7 @@ public class PetServiceMapTest extends PersonTest {
             pet.setOwner(owner);
             pet.setBirthDate(LocalDate.now());
 
-            val map = new HashMap<>();
+            val map = new HashMap<Long,Pet>();
             map.put(pet.getId(), pet);
 
             petServiceMap = new PetServiceMap();

@@ -25,7 +25,7 @@ public class SpecialityJpaService implements SpecialityService {
 
     @Override
     public Set<Speciality> findAll() {
-        val specialities = new HashSet<>();
+        val specialities = new HashSet<Speciality>();
         specialityRepository.findAll().forEach(specialities::add);
         return specialities;
     }

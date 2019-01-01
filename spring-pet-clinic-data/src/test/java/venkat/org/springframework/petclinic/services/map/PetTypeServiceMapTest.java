@@ -1,6 +1,7 @@
 package venkat.org.springframework.petclinic.services.map;
 
 import lombok.val;
+import lombok.var;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -23,7 +24,7 @@ public class PetTypeServiceMapTest{
         val petType = new PetType("Cat");
         petType.setId(1L);
 
-        val petTypeMap = new HashMap<>();
+        val petTypeMap = new HashMap<Long,PetType>();
         petTypeMap.put(petType.getId(),petType);
         petTypeServiceMap.map = petTypeMap;
     }
@@ -46,7 +47,7 @@ public class PetTypeServiceMapTest{
     @Test
     public void save() {
         int initialSize = petTypeServiceMap.map.size();
-        val petType = new PetType("Dog");
+        var petType = new PetType("Dog");
         petType = petTypeServiceMap.save(petType);
         Assert.assertNotNull("Id not generated",petType.getId());
         Assert.assertEquals("ID is not matching",initialSize+ 1,petType.getId().longValue());

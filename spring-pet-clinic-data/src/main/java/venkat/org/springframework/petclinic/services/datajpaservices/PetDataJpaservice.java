@@ -22,7 +22,7 @@ public class PetDataJpaservice implements PetService {
 
     @Override
     public Set<Pet> findAll() {
-        val pets = new HashSet<>();
+        val pets = new HashSet<Pet>();
         petRepository.findAll().forEach(pets::add);
         return pets;
     }
