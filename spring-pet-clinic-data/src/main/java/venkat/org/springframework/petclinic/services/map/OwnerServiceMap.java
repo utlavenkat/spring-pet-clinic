@@ -14,7 +14,9 @@ import venkat.org.springframework.petclinic.services.OwnerService;
 import venkat.org.springframework.petclinic.services.PetService;
 import venkat.org.springframework.petclinic.services.PetTypeService;
 
+import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @NoArgsConstructor
@@ -73,5 +75,11 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
     public Owner findByLastName(String lastName) {
         val owners = super.findAll();
         return owners.stream().filter(owner -> owner.getLastName().equalsIgnoreCase(lastName)).findFirst().get();
+    }
+
+    @Override
+    public Set<Owner> findByLastNameLike(String lastName) {
+        return super.findAll().stream().filter(owner -> owner.getLastName().contains(lastName))
+                .collect(Collectors.toSet());
     }
 }

@@ -104,4 +104,35 @@ public class OwnerDataJpaServiceTest {
         ownerDataJpaService.deleteById(testOwner.getId());
         Assert.assertNull(ownerDataJpaService.findById(testOwner.getId()));
     }
+
+    @Test
+    public  void findByLastNameLike_ExactMatch() {
+        //Given
+        final String lastName = "Chenna";
+        //when
+        Set<Owner> owners = ownerDataJpaService.findByLastNameLike(lastName);
+        //then
+        Assert.assertEquals(owners.size(),1);
+    }
+
+
+    @Test
+    public  void findByLastNameLike_CaseInsensitiveMatch() {
+        //Given
+        final String lastName = "chenna";
+        //when
+        Set<Owner> owners = ownerDataJpaService.findByLastNameLike(lastName);
+        //then
+        Assert.assertEquals(owners.size(),1);
+    }
+
+    @Test
+    public  void findByLastNameLike_NoMatch() {
+        //Given
+        final String lastName = "chenna1";
+        //when
+        Set<Owner> owners = ownerDataJpaService.findByLastNameLike(lastName);
+        //then
+        Assert.assertEquals(owners.size(),0);
+    }
 }

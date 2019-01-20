@@ -27,6 +27,13 @@ public class OwnerDataJpaService implements OwnerService {
     }
 
     @Override
+    public Set<Owner> findByLastNameLike(String lastName) {
+        Set<Owner> owners = new HashSet<>();
+        ownerRepository.findByLastNameContainingIgnoreCase(lastName).forEach(owners::add);
+        return owners;
+    }
+
+    @Override
     public Set<Owner> findAll() {
         val owners = new HashSet<Owner>();
         ownerRepository.findAll().forEach(owners::add);
