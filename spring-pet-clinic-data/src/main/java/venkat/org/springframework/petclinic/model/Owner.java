@@ -33,4 +33,8 @@ public class Owner extends Person {
         pets.add(pet);
         return pet;
     }
+
+    public boolean isNew() {
+        return this.getId() == null;
+    }
 }

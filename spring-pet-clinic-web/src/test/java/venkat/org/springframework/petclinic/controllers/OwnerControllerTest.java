@@ -1,5 +1,6 @@
 package venkat.org.springframework.petclinic.controllers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.val;
 import org.junit.After;
 import org.junit.Before;
@@ -16,8 +17,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static org.hamcrest.Matchers.*;
+import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 public class OwnerControllerTest {
@@ -25,6 +28,7 @@ public class OwnerControllerTest {
     private static final String VIEW_NAME_OWNER_LIST = "owners/index";
     private static final String VIEW_NAME_OWNER_DETAILS = "owners/ownerDetails";
     private static final String VIEW_NAME_FIND_OWNERS = "owners/findOwners";
+    private static final String VIEW_NAME_CREATE_UPDATE_OWNER_FORM = "owners/createOrUpdateForm";
 
 
     @Mock
@@ -179,5 +183,96 @@ public class OwnerControllerTest {
                 .andExpect(view().name(VIEW_NAME_FIND_OWNERS))
                 .andExpect(model().attributeDoesNotExist("owners"));
         verify(ownerService,times(1)).findByLastNameLike(anyString());
+    }
+
+    @Test
+    public void createOwnerForm() throws Exception {
+        //When
+        final ResultActions resultActions = mockMvc.perform(get("/owners/new"));
+
+        //then
+        resultActions.andExpect(status().isOk())
+                .andExpect(view().name(VIEW_NAME_CREATE_UPDATE_OWNER_FORM))
+                .andExpect(model().attributeExists("owner"))
+                .andExpect(model().attribute("owner", hasProperty("id", is(nullValue()))));
+
+        verifyZeroInteractions(ownerService);
+    }
+
+    @Test
+    public void editOwnerForm() throws Exception {
+        //Given
+        Owner owner = new Owner();
+        owner.setId(1L);
+        owner.setTelephone("12345678");
+        owner.setAddress("jggaf asjgfjgfs");
+        owner.setCity("Hyd");
+        owner.setFirstName("Test First Name");
+        owner.setLastName("Test Last Name");
+
+        when(ownerService.findById(anyLong())).thenReturn(owner);
+
+        //When
+        final ResultActions resultActions = mockMvc.perform(get("/owners/" + owner.getId() + "/edit"));
+
+        //then
+        resultActions.andExpect(status().isOk())
+                .andExpect(view().name(VIEW_NAME_CREATE_UPDATE_OWNER_FORM))
+                .andExpect(model().attributeExists("owner"))
+                .andExpect(model().attribute("owner", hasProperty("id", notNullValue())));
+
+        verify(ownerService, times(1)).findById(anyLong());
+    }
+
+    @Test
+    public void createOwner() throws Exception {
+
+        //Given
+        final Owner owner = new Owner();
+        owner.setId(1L);
+        owner.setTelephone("12345678");
+        owner.setAddress("jggaf asjgfjgfs");
+        owner.setCity("Hyd");
+        owner.setFirstName("Test First Name");
+        owner.setLastName("Test Last Name");
+
+        ObjectMapper mapper = new ObjectMapper();
+        String jsonInString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(owner);
+        when(ownerService.save(any())).thenReturn(owner);
+
+        //when
+        final ResultActions resultActions = mockMvc.perform(post("/owners/new").content(jsonInString));
+
+        //then
+        resultActions.andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/owners/" + owner.getId()));
+
+        verify(ownerService, times(1)).save(any());
+    }
+
+    @Test
+    public void updateOwner() throws Exception {
+
+        //Given
+        final Owner owner = new Owner();
+        owner.setId(1L);
+        owner.setTelephone("12345678");
+        owner.setAddress("jggaf asjgfjgfs");
+        owner.setCity("Hyd");
+        owner.setFirstName("Test First Name");
+        owner.setLastName("Test Last Name");
+
+        ObjectMapper mapper = new ObjectMapper();
+        String jsonInString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(owner);
+        when(ownerService.save(any())).thenReturn(owner);
+
+        //when
+        final ResultActions resultActions = mockMvc.perform(post("/owners/" + owner.getId() + "/edit").content(jsonInString));
+
+        //then
+        resultActions.andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/owners/" + owner.getId()));
+
+        verify(ownerService, times(1)).save(any());
     }
 }
