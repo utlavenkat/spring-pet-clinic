@@ -1,13 +1,15 @@
 package venkat.org.springframework.petclinic.model;
 
 import lombok.val;
-
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.time.LocalDate;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class PetTest extends PersonTest {
     private Owner owner;
@@ -55,4 +57,16 @@ public class PetTest extends PersonTest {
 
     }
 
+    @Test
+    public void isNew() {
+        final Pet pet = new Pet();
+        assertTrue(pet.isNew());
+    }
+
+    @Test
+    public void isNotNew() {
+        final Pet pet = new Pet();
+        pet.setId(1L);
+        assertFalse(pet.isNew());
+    }
 }

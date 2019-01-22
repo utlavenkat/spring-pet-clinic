@@ -1,6 +1,7 @@
 package venkat.org.springframework.petclinic.model;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -30,6 +31,7 @@ public class Pet extends BaseEntity {
     private Owner owner;
 
     @Column(name = "birth_date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @NonNull
     private LocalDate birthDate;
 
@@ -41,6 +43,10 @@ public class Pet extends BaseEntity {
         visit.setPet(this);
         visits.add(visit);
         return visit;
+    }
+
+    public boolean isNew() {
+        return this.getId() == null;
     }
 
 }
