@@ -1,11 +1,10 @@
 package venkat.org.springframework.petclinic.model;
 
 import lombok.val;
-
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.time.LocalTime;
+import java.time.LocalDate;
 
 public class VisitTest {
 
@@ -18,14 +17,14 @@ public class VisitTest {
     @Test
     public void testShouldConstructUsingArgumentConstructor() {
         val pet = new Pet();
-        Visit visit = new Visit(LocalTime.now(),"Regular Visit",pet);
+        Visit visit = new Visit(LocalDate.now(), "Regular Visit", pet);
         Assert.assertNotNull("Object is null", visit);
     }
 
     @Test
     public void testSettersAndGetters() {
         val pet = new Pet();
-        LocalTime now = LocalTime.now();
+        LocalDate now = LocalDate.now();
         val visit = new Visit();
         visit.setDate(now);
         visit.setDescription("General Visit");

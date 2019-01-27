@@ -11,7 +11,7 @@ import java.util.Set;
 @NoArgsConstructor
 @RequiredArgsConstructor
 @EqualsAndHashCode(callSuper = true,onlyExplicitlyIncluded = true)
-@Data
+@Data()
 @Entity
 @Table(name = "Pets")
 public class Pet extends BaseEntity {
@@ -28,6 +28,7 @@ public class Pet extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "owner_id")
     @NonNull
+    @EqualsAndHashCode.Exclude
     private Owner owner;
 
     @Column(name = "birth_date")
@@ -47,6 +48,10 @@ public class Pet extends BaseEntity {
 
     public boolean isNew() {
         return this.getId() == null;
+    }
+
+    public String toString() {
+        return name;
     }
 
 }

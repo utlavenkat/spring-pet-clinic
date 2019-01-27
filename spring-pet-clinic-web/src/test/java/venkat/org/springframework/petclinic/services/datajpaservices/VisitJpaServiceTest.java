@@ -12,7 +12,7 @@ import venkat.org.springframework.petclinic.model.Pet;
 import venkat.org.springframework.petclinic.model.Visit;
 import venkat.org.springframework.petclinic.services.VisitService;
 
-import java.time.LocalTime;
+import java.time.LocalDate;
 import java.util.Set;
 
 import static org.junit.Assert.*;
@@ -29,7 +29,7 @@ public class VisitJpaServiceTest{
     public void setUp()  {
         Pet pet = new Pet();
         pet.setId(1L);
-        Visit visit = new Visit(LocalTime.now(),"Casual Visit",pet);
+        Visit visit = new Visit(LocalDate.now(), "Casual Visit", pet);
         testVisit =visitService.save(visit);
     }
 
@@ -45,7 +45,8 @@ public class VisitJpaServiceTest{
     public void findAll() {
         Set<Visit> visits =visitService.findAll();
         assertNotNull(visits);
-        assertTrue(visits.size() >= 0);
+        visits.size();
+        assertTrue(true);
     }
 
     @Test
@@ -65,7 +66,7 @@ public class VisitJpaServiceTest{
     public void save() {
         Pet pet = new Pet();
         pet.setId(1L);
-        Visit visit = new Visit(LocalTime.now(),"Test Visit",pet);
+        Visit visit = new Visit(LocalDate.now(), "Test Visit", pet);
         Visit savedVisit = visitService.save(visit);
         assertNotNull(savedVisit);
         assertNotNull(savedVisit.getId());

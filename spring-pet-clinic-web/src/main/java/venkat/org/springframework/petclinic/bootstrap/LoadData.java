@@ -1,16 +1,15 @@
 package venkat.org.springframework.petclinic.bootstrap;
 
 
-import lombok.val;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import venkat.org.springframework.petclinic.model.*;
 import venkat.org.springframework.petclinic.services.*;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 @Component
 @RequiredArgsConstructor
@@ -62,10 +61,10 @@ public class LoadData implements CommandLineRunner {
         owner2.getPets().add(pet2);
         ownerService.save(owner2);
 
-        val visit1 = new Visit(LocalTime.now(),"General Visit",pet1);
+        val visit1 = new Visit(LocalDate.now(), "General Visit", pet1);
         visitService.save(visit1);
 
-        val visit2 = new Visit(LocalTime.now(),"Fever",pet2);
+        val visit2 = new Visit(LocalDate.now(), "Fever", pet2);
         visitService.save(visit2);
 
         val vet1 = new Vet();

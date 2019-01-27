@@ -1,5 +1,6 @@
 insert into types(name) values ('DOG');
 insert into types(name) values ('CAT');
+insert into types(name) values ('Rabbit');
 
 insert into owners(first_name,last_name,address,city,telephone) values ('Venkatasubbaiah','Utla','HIG-68,9th Phase, KPHB Colony','Hyderabad','9100912536');
 insert into owners(first_name,last_name,address,city,telephone) values ('Lakshmi','Chenna','HIG-68,9th Phase, KPHB Colony','Hyderabad','9100912536');
